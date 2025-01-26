@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate Marks</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+  </head>
+  <body>
+    <div>
+      <h1 class="heading">Calculate Module Marks</h1>
+      <h4 class="subheading">Please enter your marks for both coursework 01 and coursework 02!</h4>
+
+      <form id="marks-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+        <label for="coursework1">Coursework 01 Marks:</label>
+        <input type="text" id="coursework1" name="cw1" min="0" max="100" placeholder="Enter your coursework 01 marks" required />
+
+        <label for="coursework2">Coursework 02 Marks:</label>
+        <input type="text" id="coursework2" name="cw2" min="0" max="100" placeholder="Enter your coursework 02 marks" required />
+
+        <button type="submit">Calculate</button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <p>Charaka Jith Gunasinghe - 20200241 / w1810001</p>
+    </footer>
+
+    <script src="./scripts/submit-marks.js"></script>
+  </body>
+</html>
