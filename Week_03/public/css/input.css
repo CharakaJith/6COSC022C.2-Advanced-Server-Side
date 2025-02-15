@@ -1,0 +1,20 @@
+.input {
+  width: 70%;
+  height: 50%;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  perspective: 1000px;
+}
+
+.input h1 {
+  margin: 10;
+  width: 100%;
+  text-align: center;
+  padding-left: 10px;
+}

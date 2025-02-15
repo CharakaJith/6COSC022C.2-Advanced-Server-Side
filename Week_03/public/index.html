@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 03 Tute</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/input.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+  </head>
+  <body>
+    <div class="input">
+      <h1>Calculate Age</h1>
+
+      <div class="form-wrapper">
+        <!-- front side -->
+        <div class="form-inner">
+          <form id="age-form">
+            <label for="date">Your Birth Date:</label>
+            <input type="text" id="date" name="date" placeholder="DD-MM-YYYY" required />
+
+            <button type="submit">Calculate</button>
+          </form>
+        </div>
+
+        <!-- result side -->
+        <div class="form-back">
+          <p id="age"></p>
+          <p id="text"></p>
+          <p id="error"></p>
+          <button id="go-back">Go Back</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>Charaka Jith Gunasinghe - 20200241 / w1810001</p>
+    </footer>
+
+    <script src="./scripts/calculate-age.js"></script>
+    <!-- <script src="./scripts/save-student.js"></script> -->
+    <!-- <script src="./scripts/delete-student.js"></script> -->
+  </body>
+</html>

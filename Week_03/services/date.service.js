@@ -52,10 +52,7 @@ async function daysTillNextDay(birth, current, isPassed) {
     remainingMonths += 12;
   }
 
-  return {
-    remainingMonths,
-    remainingDays,
-  };
+  return `${remainingMonths} months and ${remainingDays} days until your next birthday!`;
 }
 
 module.exports = dateService;
