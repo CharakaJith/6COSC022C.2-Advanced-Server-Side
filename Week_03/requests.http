@@ -1,0 +1,7 @@
+### calculate age
+POST http://localhost:8000/api/date
+Content-Type: application/json
+
+{
+    "date": "18-02-2000"
+}

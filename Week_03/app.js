@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const dateRouter = require('./routes/date.routes');
 require('dotenv').config();
 
 const app = express();
@@ -11,6 +12,9 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.path} | ${new Date()}`);
   next();
 });
+
+// setup routing paths
+app.use('/api/date', dateRouter);
 
 const ENV = process.env.ENV || 'development';
 const PORT = process.env.PORT || 3000;
