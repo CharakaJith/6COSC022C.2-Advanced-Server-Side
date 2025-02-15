@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 02 Tute</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/table.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+  </head>
+  <body>
+    <div class="heading">
+      <h1>Students List</h1>
+    </div>
+
+    <form id="student-form">
+      <label for="name">Student Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter the student name" required />
+
+      <label for="name">Student ID:</label>
+      <input type="text" id="id" name="id" placeholder="Enter the student ID number" required />
+
+      <label for="name">Student Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter the student email" required />
+
+      <button type="submit">Save</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Student Name</th>
+          <th>Student ID</th>
+          <th>Student Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="studentTableBody">
+        <!-- Data will be inserted here -->
+      </tbody>
+    </table>
+
+    <footer class="footer">
+      <p>Charaka Jith Gunasinghe - 20200241 / w1810001</p>
+    </footer>
+
+    <script src="./scripts/fetch-students.js"></script>
+    <script src="./scripts/save-student.js"></script>
+    <script src="./scripts/delete-student.js"></script>
+  </body>
+</html>

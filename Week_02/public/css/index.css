@@ -1,0 +1,27 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.subheading {
+  text-align: center;
+}
+
+.footer {
+  background-color: #f1f1f1;
+  text-align: center;
+  width: 100%;
+  margin-top: auto;
+}
