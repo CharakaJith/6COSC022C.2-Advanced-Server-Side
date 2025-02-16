@@ -12,6 +12,9 @@ app.use(express.json());
 const initialization = async () => {
   // create tables
   await initialize.createTables();
+
+  // poppulate movies table
+  await initialize.populateMovies();
 };
 initialization();
 

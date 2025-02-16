@@ -1,4 +1,5 @@
 const db = require('./connection');
+const movieDao = require('../repository/movies.dao');
 require('dotenv').config();
 
 const initialize = {
@@ -33,6 +34,60 @@ const initialize = {
           return resolve();
         });
       });
+    }
+  },
+
+  populateMovies: async () => {
+    // sample movies
+    const movies = [
+      {
+        title: 'The Shawshank Redemption',
+        director: 'Frank Darabont',
+        genre: 'Drama',
+        rating: 9.3,
+        released: '1994-09-22',
+      },
+      {
+        title: 'The Godfather',
+        director: 'Francis Ford Coppola',
+        genre: 'Crime',
+        rating: 9.2,
+        released: '1972-03-24',
+      },
+      {
+        title: 'The Dark Knight',
+        director: 'Christopher Nolan',
+        genre: 'Action',
+        rating: 9.0,
+        released: '2008-07-18',
+      },
+      {
+        title: 'Pulp Fiction',
+        director: 'Quentin Tarantino',
+        genre: 'Crime',
+        rating: 8.9,
+        released: '1994-10-14',
+      },
+      {
+        title: 'The Lord of the Rings: The Return of the King',
+        director: 'Peter Jackson',
+        genre: 'Adventure',
+        rating: 8.9,
+        released: '2003-12-17',
+      },
+    ];
+
+    // populate movies table
+    for (const movie of movies) {
+      // check if movie exists
+      const existingMovie = await movieDao.getMovieByTitle(movie.title);
+      if (existingMovie) {
+        continue;
+      }
+
+      // insert movie
+      const newMovie = await movieDao.createNewMovie(movie);
+      console.log(`Initial movie created: ${newMovie.title}`);
     }
   },
 };
