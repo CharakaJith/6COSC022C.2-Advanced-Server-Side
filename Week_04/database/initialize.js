@@ -80,14 +80,14 @@ const initialize = {
     // populate movies table
     for (const movie of movies) {
       // check if movie exists
-      const existingMovie = await movieDao.getMovieByTitle(movie.title);
+      const existingMovie = await movieDao.getByTitleAndDirector(movie);
       if (existingMovie) {
-        continue;
+        break;
+      } else {
+        // insert movie
+        const newMovie = await movieDao.create(movie);
+        console.log(`Initial movie created: ${newMovie.title}`);
       }
-
-      // insert movie
-      const newMovie = await movieDao.createNewMovie(movie);
-      console.log(`Initial movie created: ${newMovie.title}`);
     }
   },
 };

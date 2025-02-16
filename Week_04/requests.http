@@ -1,0 +1,20 @@
+### create new movie
+POST http://localhost:8000/api/movie
+Content-Type: application/json
+
+{
+  "title": "Inception",
+  "director": "Christopher Nolan",
+  "genre": "Sci-Fi",
+  "rating": 8.8,
+  "released": "2010-07-10"
+}
+
+### get all movies
+GET http://localhost:8000/api/movie
+
+### get movie by id
+GET http://localhost:8000/api/movie/2
+
+### delete movie by id
+DELETE http://localhost:8000/api/movie/6
