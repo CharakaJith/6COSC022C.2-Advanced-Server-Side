@@ -1,11 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+const initialize = require('./database/initialize');
 require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// initialize database
+const initialization = async () => {
+  // create tables
+  await initialize.createTables();
+};
+initialization();
 
 // middleware to log called endpoints
 app.use((req, res, next) => {
