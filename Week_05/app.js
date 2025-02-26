@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const initialize = require('./database/initialize');
+const taskRouter = require('./routes/task.routes');
 require('dotenv').config();
 
 const app = express();
@@ -23,7 +24,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// TODO; setup routing paths
+// setup routing paths
+app.use('/api/task', taskRouter);
 
 const ENV = process.env.ENV || 'development';
 const PORT = process.env.PORT || 3000;
