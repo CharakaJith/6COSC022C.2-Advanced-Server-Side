@@ -134,7 +134,10 @@ const movieService = {
       response = {
         status: 200,
         success: true,
-        data: movies,
+        data: {
+          message: 'Fetched movies!',
+          movies: movies,
+        },
       };
     }
 
