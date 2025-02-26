@@ -16,5 +16,8 @@ GET http://localhost:8000/api/movie
 ### get movie by id
 GET http://localhost:8000/api/movie/2
 
+### search movie
+GET http://localhost:8000/api/movie/search/a
+
 ### delete movie by id
 DELETE http://localhost:8000/api/movie/6

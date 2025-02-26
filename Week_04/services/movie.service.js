@@ -1,3 +1,4 @@
+const { searchMovie } = require('../controllers/movie.controller');
 const movieDao = require('../repository/movies.dao');
 const field_validator = require('../util/field_validator');
 
@@ -106,6 +107,34 @@ const movieService = {
           message: `Fetched movie by id: ${id}!`,
           movies: movie,
         },
+      };
+    }
+
+    return response;
+  },
+
+  searchMovie: async (name) => {
+    let response;
+
+    // validate user inputs
+    const errorArray = [];
+    errorArray.push(await field_validator.validate_string(name, 'name', 'Movie name'));
+
+    // check for validation errors
+    const filteredErrors = errorArray.filter((obj) => obj !== 1);
+    if (filteredErrors.length !== 0) {
+      response = {
+        status: 400,
+        success: false,
+        data: filteredErrors,
+      };
+    } else {
+      const movies = await movieDao.searchByName(name);
+
+      response = {
+        status: 200,
+        success: true,
+        data: movies,
       };
     }
 

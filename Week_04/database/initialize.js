@@ -64,7 +64,7 @@ const initialize = {
       {
         title: 'Pulp Fiction',
         director: 'Quentin Tarantino',
-        genre: 'Crime',
+        genre: 'Thriller',
         rating: 8.9,
         released: '1994-10-14',
       },

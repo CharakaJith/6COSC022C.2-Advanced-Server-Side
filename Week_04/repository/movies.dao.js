@@ -65,6 +65,18 @@ const movieDao = {
       });
     });
   },
+
+  searchByName: async (movieName) => {
+    return new Promise((resolve, reject) => {
+      const searchQuery = 'SELECT * FROM movies WHERE title LIKE ?';
+
+      db.all(searchQuery, [`%${movieName}%`], function (error, rows) {
+        if (error) return reject(new Error(`Failed to search movie by name ${movieName}: ${error.message}`));
+
+        return resolve(rows);
+      });
+    });
+  },
 };
 
 module.exports = movieDao;

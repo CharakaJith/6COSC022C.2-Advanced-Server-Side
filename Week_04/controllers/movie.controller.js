@@ -62,6 +62,27 @@ const movieController = {
     }
   },
 
+  searchMovie: async (req, res) => {
+    try {
+      const { name } = req.params;
+
+      const response = await movieService.searchMovie(name);
+      const { status, success, data } = response;
+
+      return res.status(status).json({
+        success: success,
+        data: data,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        data: {
+          message: error.message,
+        },
+      });
+    }
+  },
+
   deleteMovie: async (req, res) => {
     try {
       const { id } = req.params;
