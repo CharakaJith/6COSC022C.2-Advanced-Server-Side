@@ -61,6 +61,70 @@ const userService = {
       },
     };
   },
+
+  userLogIn: async (data) => {
+    const { email, password } = data;
+
+    // validate user details
+    const errorArray = [];
+    errorArray.push(await field_validator.validate_email(email));
+    errorArray.push(await field_validator.validate_string(password, 'password'));
+
+    // check request data
+    const filteredErrors = errorArray.filter((obj) => obj !== 1);
+    if (filteredErrors.length !== 0) {
+      return {
+        success: false,
+        status: 400,
+        data: filteredErrors,
+      };
+    }
+
+    // check if user registered
+    const user = await userDao.getByEmail(email);
+    if (!user) {
+      return {
+        success: false,
+        status: 401,
+        data: {
+          message: 'Invalid user credentials!',
+        },
+      };
+    }
+
+    // validate password and remove it
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return {
+        success: false,
+        status: 401,
+        data: {
+          message: 'Invalid user credentials!',
+        },
+      };
+    }
+    delete user.password;
+
+    // check if user is active
+    if (user.user_status != USER_STATUS.ACTIVE) {
+      return {
+        success: false,
+        status: 403,
+        data: {
+          message: 'User is not active!',
+        },
+      };
+    }
+
+    return {
+      success: true,
+      status: 200,
+      data: {
+        message: 'User logged in!',
+        user: user,
+      },
+    };
+  },
 };
 
 module.exports = userService;

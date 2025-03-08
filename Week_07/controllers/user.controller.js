@@ -25,7 +25,29 @@ const userController = {
     }
   },
 
-  login: async (req, res) => {},
+  login: async (req, res) => {
+    try {
+      const user = ({ email, password } = req.body);
+
+      const response = await userService.userLogIn(user);
+      const { success, status, data } = response;
+
+      return res.status(status).json({
+        success: success,
+        response: {
+          status: status,
+          data: data,
+        },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        data: {
+          message: error.message,
+        },
+      });
+    }
+  },
 };
 
 module.exports = userController;
