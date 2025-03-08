@@ -10,10 +10,10 @@ const userService = {
 
     // validate user details
     const errorArray = [];
-    errorArray.push(await field_validator.validate_string(firstName, 'firstName'));
-    errorArray.push(await field_validator.validate_string(lastName, 'lastName'));
+    errorArray.push(await field_validator.validate_string(firstName, 'First name'));
+    errorArray.push(await field_validator.validate_string(lastName, 'Last name'));
     errorArray.push(await field_validator.validate_email(email));
-    errorArray.push(await field_validator.validate_string(password, 'password'));
+    errorArray.push(await field_validator.validate_string(password, 'Password'));
 
     // check request data
     const filteredErrors = errorArray.filter((obj) => obj !== 1);

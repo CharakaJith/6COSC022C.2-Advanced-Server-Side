@@ -3,7 +3,7 @@ const field_validator = {
     if (!value || value.trim().length === 0) {
       return {
         fields: param,
-        message: `Field ${param} is empty!`,
+        message: `${param} field is empty!`,
       };
     }
 
@@ -14,7 +14,7 @@ const field_validator = {
     if (!value) {
       return {
         fields: param,
-        message: `Field ${param} is empty!`,
+        message: `${param} field is empty!`,
       };
     }
 
@@ -24,7 +24,7 @@ const field_validator = {
   validate_email: async (email) => {
     const emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    const isValidString = await field_validator.validate_string(email, 'email');
+    const isValidString = await field_validator.validate_string(email, 'Email');
     if (isValidString != 1) {
       return isValidString;
     }

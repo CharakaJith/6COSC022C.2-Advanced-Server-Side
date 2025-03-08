@@ -16,6 +16,9 @@ initialization();
 app.use(cors());
 app.use(express.json());
 
+// serve static files from public folder
+app.use(express.static('public'));
+
 // middleware to log called endpoints
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path} | ${new Date()}`);
