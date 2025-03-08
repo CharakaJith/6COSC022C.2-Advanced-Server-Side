@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const userDao = require('../repositories/user.dao');
 const field_validator = require('../util/field_validator');
 const { USER_STATUS } = require('../constants/user.constants');
+const jwtService = require('./jwt.service');
 
 const userService = {
   userSignUp: async (data) => {
@@ -116,6 +117,16 @@ const userService = {
       };
     }
 
+    // generate access token
+    const tokenUser = {
+      id: user.id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+      status: user.user_status,
+    };
+    const accessToken = await jwtService.generateAccessToken(tokenUser);
+
     return {
       success: true,
       status: 200,
@@ -123,6 +134,7 @@ const userService = {
         message: 'User logged in!',
         user: user,
       },
+      accessToken: accessToken,
     };
   },
 };

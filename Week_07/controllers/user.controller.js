@@ -30,7 +30,12 @@ const userController = {
       const user = ({ email, password } = req.body);
 
       const response = await userService.userLogIn(user);
-      const { success, status, data } = response;
+      const { success, status, data, accessToken } = response;
+
+      // set access token
+      res.set({
+        'Access-Token': accessToken,
+      });
 
       return res.status(status).json({
         success: success,
