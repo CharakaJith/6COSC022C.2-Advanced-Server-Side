@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const apiUrl = 'http://localhost:8000/api/user';
-  const form = document.querySelector('.sign-up-form');
+  const apiUrl = 'http://localhost:8000/api/user/login';
+  const form = document.querySelector('.log-in-form');
   const errorMessagesContainer = document.getElementById('errorMessages');
   const errorList = document.getElementById('errorList');
 
@@ -25,41 +25,48 @@ document.addEventListener('DOMContentLoaded', function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert('Sign-up successful!');
+          alert('Login successful!');
 
-          window.location.href = 'login.html';
+          // store user data in session
+          const userData = data.response.data.user;
+          sessionStorage.setItem('user', JSON.stringify(userData));
+
+          window.location.href = 'home.html';
         } else {
           // clear previous errors
           errorMessagesContainer.style.display = 'block';
           errorList.innerHTML = '';
 
           // scenario: single error message
-          if (data.response && data.response.data && data.response.data.message) {
-            const errorMessage = data.response.data.message;
-            const errorItem = document.createElement('li');
-            errorItem.textContent = errorMessage;
-            errorList.appendChild(errorItem);
-          }
-
-          // scenario: error message array
-          else if (data.response && data.response.data && Array.isArray(data.response.data)) {
-            data.response.data.forEach((error) => {
+          if (data.response && data.response.data) {
+            if (typeof data.response.data === 'string') {
               const errorItem = document.createElement('li');
-              errorItem.textContent = `${error.message}`;
+              errorItem.textContent = data.response.data;
               errorList.appendChild(errorItem);
-            });
+            }
+
+            // scenario: error message array
+            else if (Array.isArray(data.response.data)) {
+              data.response.data.forEach((error) => {
+                const errorItem = document.createElement('li');
+                errorItem.textContent = error.message || 'Unknown error';
+                errorList.appendChild(errorItem);
+              });
+            } else if (data.response.data.message) {
+              const errorItem = document.createElement('li');
+              errorItem.textContent = data.response.data.message;
+              errorList.appendChild(errorItem);
+            }
           }
 
           // default
           else {
-            alert('There was an error signing up. Please try again.');
+            alert('There was an error logging in. Please try again.');
           }
         }
       })
       .catch((error) => {
         console.error('Error:', error);
-
-        window.location.href = 'index.html';
       });
   });
 

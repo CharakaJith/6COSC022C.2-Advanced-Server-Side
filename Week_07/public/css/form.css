@@ -11,7 +11,8 @@ h1 {
   margin-bottom: 20px;
 }
 
-.sign-up-form {
+.sign-up-form,
+.log-in-form {
   display: flex;
   flex-direction: column;
 }
