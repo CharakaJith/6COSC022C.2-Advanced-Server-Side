@@ -1,0 +1,2 @@
+### fetch all celebs
+GET http://localhost:8000/api/celebrity/mic
